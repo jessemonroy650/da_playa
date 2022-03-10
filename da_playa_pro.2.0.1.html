@@ -1,0 +1,146 @@
+<html><meta charset='utf-8'>
+<head>
+<title>Da Playa Pro 2.0</title>
+<style>
+.fixed { font-family:Courier; }
+.textbox { font-family:Courier;font-size:16px; background-color:khaki; }
+.spacer {padding:0;margin:0;}
+.list_control { float:right;clear:right; }
+li {font-size:12px; font-family:Courier;}
+</style>
+<script id=javascript.d>
+const myStorage = window.localStorage;
+//
+const theExtensions = [ 'notepad', 'rumble_buttons' ];
+
+if ( myStorage.getItem('do-reset') == 1 ) {
+  myStorage.setItem('video-current', 0);
+  myStorage.setItem('do-reset', 0);
+}
+//
+theItem  = myStorage.getItem('video-current');
+theSlot  = myStorage.getItem(theItem);
+
+console.log("STARTUP:theItem " + theItem);
+console.log("STARTUP:theSlot " + theSlot);
+
+if ( theSlot !== null ) {
+  data = theSlot.split(",");
+  theHost    = data[0].split(":")[1];
+  theMediaId = data[1].split(":")[1];
+} else {
+  theHost    = 'END';
+  theMediaId = 'END';
+}
+
+console.log("STARTUP:theHost " + theHost);
+console.log("STARTUP:theMediaId " + theMediaId);
+
+</script>
+<script src=javascript.d/list_basics.js></script>
+<script src=javascript.d/ui_interface_basics.js></script>
+<script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
+<script id=da_playa_pro ></script>
+</head>
+<!-- ##            ## -->
+<!-- ## START HTML ## -->
+<!-- ##            ## -->
+<body>
+<li align=right ><a href="get-media-code.html">ENCODER</a> convert a url into a CSV for processing || <a href="process-csv.html">LOADER</a> load the CSV into the player 
+<!-- || <a href="da_playa_pro.2.0.1.html">VIDEO PLAYER</a> play --> <hr /></li>
+
+<div id='list_control' class=list_control>
+<a href="index.html"><img id="player_logo" style="float:right;height:60px;" src=img/da_playa_logo.png /></a>
+    <div>Status: <span id=status style=padding:0.25em; ></span></div>
+    <div>Queue: <span id=items-sofar style=padding:0.25em; >0 of 0</span></div>
+    <div>&nbsp;</div>
+    <div>
+      <button style="float:left; padding:0.25em;" onclick="myNext()">NEXT</button>
+      <button style="float:right;padding:0.25em;" onclick="myReset()">RESET</button>
+    </div>
+    <div>&nbsp;</div>
+    <hr />
+    <div style="padding:0.25em;">
+      <input id=video-url type=text size=50 />
+      <!-- <button onclick="markfield(1)" style="padding:0.25em;background-color: #4CAF50;" >MARK URL</button> -->
+    </div>
+    <hr />
+</div>
+
+<div id="media-info" class=list_control style="width:50%">
+    <h3><span id=title>TITLE</span><img id="platform_logo" style="float:right;height:25px;" src=img/youtube_logo.png /></h3>
+    <div>
+         Duration <span id=duration></span> seconds<span id=duration-minutes></span> &ndash;
+         So-Far <span id=sofar></span> seconds<span id=sofar-minutes></span>
+    </div>
+    <hr />
+</div>
+
+<div id=youtube-wrap>
+  <iframe id="youtube-example"
+    width="640" height="360"
+    src="https://www.youtube.com/embed/_DqMmsAcfm4?enablejsapi=1"
+    frameborder="0"
+    style="visibility:visible;"
+    autoplay=true
+    allowfullscreen>
+  </iframe>
+</div>
+
+<div id="rumble-example"
+    class="rumble"
+    display="none"
+    width="640"
+    height="360"
+    src="https://rumble.com/embed/vs47d4/?pub=bwaj5"
+    frameborder="0"
+    style="visibility:visible"
+    autoplay=true
+    allowfullscreen>
+</div>
+
+<div id=soundcloud-wrap>
+<iframe 
+    id="soundcloud-example"
+    width="100%"
+    height="166" 
+    scrolling="no" 
+    frameborder="no"
+    style="visibility:visible"
+    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1209823672&color=4568a2&show_comments=false" >
+</iframe>
+</div>
+
+<hr />
+<p class=spacer>&nbsp;</p>
+
+
+<span id=rumble_buttons style="display:none; float:right;padding-left:3em; padding-right:3em;" >
+<button onclick="rumble_backward()">Backwards</button> &nbsp; <button onclick="rumble_forward()">Forward</button></span>
+
+<div ><button onclick="commit_marked()">Commit Marked and Notes</button> <span id=commit_marker>|&nbsp;|</span><br />
+<textarea id=marked class=textbox cols=50 rows=8 ></textarea>
+<textarea id=marked-notes class=textbox style="background-color:white;" cols=60 rows=8 ></textarea><br />
+<button onclick="clear_marked()">CLEAR Marked and Notes</button>
+</div>
+
+BOTTOM
+</body>
+<!-- ##                 ## -->
+<!-- ## POST HTML READY ## -->
+<!-- ##                 ## -->
+<script src=javascript.d/yt_routines.js></script>
+<script src=javascript.d/rumble_routines.js></script>
+<script src=javascript.d/soundcloud_routines.js></script>
+<script src=javascript.d/wait_for_ui.js id="wait_for_ui" ></script>
+<!-- ## Professional Extensions ## -->
+<script src=javascript.d/notepad.js></script>
+<script src=javascript.d/rumble_buttons.js></script>
+<script id=da_playa_pro-bottom >
+  /* THIS NEEDS TO BE AT THE VERY BOTTOM. */
+  if ( theExtensions.includes('notepad') ) {
+    store_to_marked();
+  }
+</script>
+
+</html>

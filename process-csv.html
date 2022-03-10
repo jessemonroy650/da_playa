@@ -1,0 +1,32 @@
+<html><meta charset='utf-8'>
+<head><title>localStorage CSV input test</title></head>
+<style>
+.fixed { font-family:Courier; }
+.textbox { font-family:Courier;font-size:16px; }
+li {font-size:12px; font-family:Courier;}
+</style>
+<body>
+<p>
+<h2>CSV Input<a href="index.html"><img id="player_logo" style="float:right;height:60px;" src=img/da_playa_logo.png /></a></h2>
+<li><a href="get-media-code.html">ENCODER</a> convert a url into a CSV for processing <!-- || <a href="process-csv.html">LOADER</a> load the CSV into the player --> 
+|| <a href="da_playa_pro.2.0.1.html">VIDEO PLAYER</a> play <hr /></li>
+<p class=fixed >website,videoId</p>
+<textarea id=csv-input rows="15" cols="50" placeholder="example:rumble.com,Zzyzx" class=textbox >
+</textarea><br /><b>debug</b><br /><span id=num_fields></span><br />
+<button onclick=setData() >SET Data</button>
+<button onclick=getData() >Get Data</button>
+<button onclick=clearData() >Clear Data</button>
+</p>
+
+<hr />
+
+<b>FINAL &ndash;</b> Total Videos <span id="video-total">0</span><br />
+<pre id=final></pre>
+</body>
+
+<script>
+const myStorage = window.localStorage;
+</script>
+
+<script src="/home/jessem/TBO/embedded-video-list-player/localstore.d/localstorage.js"></script>
+</html>

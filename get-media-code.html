@@ -1,0 +1,142 @@
+<html><meta charset='utf-8'>
+<head><title></title>
+<script type="text/javascript">
+</script>
+<style>
+.fixed { font-family:Courier; }
+.textbox { font-family:Courier;font-size:16px; }
+li {font-size:12px; font-family:Courier;}
+</style>
+</head>
+<body>
+<h2>Input Test</h2>
+
+<li><!-- <a href="get-media-code.html">ENCODER</a> convert a url into a CSV for processing || -->
+<a href="process-csv.html">LOADER</a> load the CSV into the player 
+|| <a href="da_playa_pro.2.0.1.html">VIDEO PLAYER</a> play <hr /></li>
+
+<p>
+<h3>Rumble Test<a href="index.html"><img id="player_logo" style="float:right;height:60px;" src=img/da_playa_logo.png /></a></h3>
+&nbsp;<input id=rb_input class=textbox type=text size=60 placeholder="rumble Embed IFRAME URL" />
+&nbsp;<button onclick="getRBfield(1)">RB APPEND</button><br />
+</p>
+<p>
+https://rumble.com/embed/vq4gcg/?pub=bwaj5
+</p>
+
+<p>
+<h3>SoundCloud Test</h3>
+&nbsp;<input id=sc_input class=textbox type=text size=60 placeholder="soundcloud" />
+&nbsp;<button onclick="getSCfield(1)">SC APPEND</button><br />
+</p>
+<p>
+<h3>YouTube Test</h3>
+&nbsp;<input id=ytl_input class=textbox type=text size=60 placeholder="youtube long" /><!-- &nbsp;<button onclick="getYTfield()">YT GET</button> --><br />
+&nbsp;<input id=yts_input class=textbox type=text size=60 placeholder="youtube short" />&nbsp;<button onclick="getYTfield(1)">YT APPEND</button>
+</p>
+<p>
+https://www.youtube.com/watch?v=fOJYuzkv_9U<br />
+https://youtu.be/fOJYuzkv_9U
+</p>
+<!-- 
+<p>
+https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1207984699&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true
+</p>
+
+-->
+
+<p>
+<textarea id=final class=textbox rows="10" cols="50" ></textarea>
+</p>
+
+<ul>
+<li> String.prototype.<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match">match()</a></li>
+<li> String.prototype.<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split">split()</a></li>
+</ul>
+
+</body>
+<script type="text/javascript">
+//
+function getYTfield(a) {
+  var ytl_input = document.getElementById('ytl_input').value;
+  var yts_input = document.getElementById('yts_input').value;
+
+  code_1 = '';
+  if ( ytl_input.length ) {
+    console.log(ytl_input);
+    ytl_path     = ytl_input.split('/')[3];
+    ytl_theCode  = ytl_path.split('=')[1].slice(0,11);
+    console.log('ytl_theCode ' + ytl_theCode);
+    code_1 = 'youtube.com,' + ytl_theCode;
+    document.getElementById('ytl_input').value = '';
+  }
+
+  code_2 = '';
+  if ( yts_input.length ) {
+    console.log(yts_input);
+    yts_theCode  = yts_input.split('/')[3];
+    console.log('yts_theCode ' + yts_theCode);
+    code_2 = 'youtube.com,' + yts_theCode
+    document.getElementById('yts_input').value = '';
+  }
+
+  console.log(code_1.length);
+  console.log(code_2.length);
+
+  if ( code_1.length && code_2.length ) {
+    code_final = code_1 + '\n' + code_2;
+  } else {
+    code_final = code_1 + code_2;
+  }
+
+  if ( a == 1) {
+    if ( document.getElementById('final').value.length > 0 )  {
+      document.getElementById('final').value = document.getElementById('final').value + '\n' + code_final;
+    } else {
+      document.getElementById('final').value = code_final;
+    }
+  } else {
+    document.getElementById('final').value = code_final;
+  }
+  //
+  document.getElementById('ytl_input').value = '';
+  document.getElementById('yts_input').value = '';
+}
+//
+function getRBfield(a) {
+  var rb_input = document.getElementById('rb_input').value;
+  console.log(rb_input);
+  rb_theCode  = rb_input.split('/')[4];
+  console.log('rb_theCode ' + rb_theCode);
+
+
+  if ( a == 1) {
+    document.getElementById('final').value = document.getElementById('final').value + '\n' + 'rumble.com,' + rb_theCode;
+  } else {
+    document.getElementById('final').value = 'rumble.com,' + rb_theCode;
+  }
+  document.getElementById('rb_input').value = '';
+}
+//
+function getSCfield(a) {
+  var sc_input = document.getElementById('sc_input').value;
+  console.log(sc_input);
+  //sc_path    = sc_input.split('/')[4];
+  sc_path    = sc_input.split('/')[8];
+  sc_theCode = sc_path.split('&')[0].slice(0,10);
+  console.log('sc_theCode ' + sc_theCode);
+
+  if ( a == 1) {
+    if ( document.getElementById('final').value.length > 0 )  {
+      document.getElementById('final').value = document.getElementById('final').value + '\n' +  'soundcloud.com,' + sc_theCode;
+    } else {
+      document.getElementById('final').value = 'soundcloud.com,' + sc_theCode;
+    }
+  } else {
+    document.getElementById('final').value = 'soundcloud.com,' + sc_theCode;
+  }
+  document.getElementById('sc_input').value = '';
+}
+
+</script>
+</html>
