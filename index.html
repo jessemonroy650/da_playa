@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Da Playa Instructions</title>
+</head>
+<style>
+ul.choices > li {
+  font-size: 30px;
+  line-height: 1.625;
+}
+.hide-block { display:none; }
+</style>
+<script id=javascript.d>
+/*
+html * {
+  font-size: 16px;
+  line-height: 1.625;
+  font-family: Nunito, sans-serif;
+}
+
+  color: #2020131;
+  font-family: Nunito, sans-serif;
+ */
+//const theExtensions = [ 'notepad', 'rumble_buttons', 'time-alarm' ];
+const theExtensions = [ 'rumble_buttons', 'time-alarm' ];
+
+</script>
+<body>
+<div  style="float:right;">
+<div><span id=day>Today is <span id=date></span>: <span id=dow></span></div>
+
+<div id=time><span id=hours></span>:<span id=minutes></span>:<span id=seconds></span></div>
+
+<button onclick="doClearInterval()">STOP CLOCK</button>
+
+<div id=alarm><span id=ahours></span>:<span id=aminutes></span>:<span id=aseconds></span></div>
+<button onclick="doClearInterval()">SET ALARM</button>
+</div>
+<h1>Da Playa<a href="index.html"><img id="player_logo" style="float:right;height:60px;" src=img/da_playa_logo.png /></a></h1>
+<p>In house, we monitor thirty (30) to one-hundred (100) video or podcasts from <code>youtube, rumble, soundcloud or podbean</code> daily. The youtube website is bad, horrible, hideous; rumble, soundcloud & podean are not much better. Instead of improving their search functions, they try to force feed the users garbage-content.</p>
+
+<h2>Instructions</h2>
+<ol class=choices>
+<li ><a href="get-media-code.html">ENCODER</a> convert a url into a CSV for processing</li>
+<li ><a href="process-csv.html">LOADER</a> load the CSV into the player</li>
+<li ><a href="da_playa_pro.2.0.1.html">VIDEO PLAYER</a> play</li>
+</ol>
+
+<h3>1. ENCODER</h3>
+With <i>youtube.com</i>, use the URL.<br />
+With <i>rumble.com</i> & <i>soundcloud.com</i>, use the EMBED button to find the appropriate URL.<br />
+
+<h3>2. LOADER</h3>
+
+<ol>
+<li> The list of encoded URLS is put into the <b>'CVS Input'</b></li>
+<li> Press the <button disabled >SET Data</button> button</li>
+<li> The list will then be update for internal use and displayed in the <b>FINAL</b> section.</li>
+<li> Switch window, you are ready to play.</li>
+</ol>
+
+<h3>3. VIDEO PLAYER</h3>
+
+<ol>
+<li> Hit <button disabled >RESET</button> button</li>
+<li> Hit the browser <i>Reload page button</i>.</li>
+<li> Hit play button on video, if it does not automatically start.</li>
+</ol>
+
+<hr />
+
+<h3>4. EXTENSION</h3>
+
+<ol>
+<li> <code>rumble_buttons</code> - in embedded mode, only the <i>spacebar</i> works as the play/pause on the keyboard.</li>
+<li> <code>notpad</code> - notes kept on the page until the <button disabled >RESET</button> button is hit.</li>
+<li> <i>coming</i> - jump - The <button disabled >JUMP</button> button jumps directly to the next video.</li>
+<li> <i>coming</i> - alarm - If you are waiting for a particular show or event, an alarm is available.</li>
+<li> <i>coming</i> - extended - information about video, including thumbnails</li>
+<li> <i>coming</i> - titleList - a text list of the title of upcoming media clips</li>
+<li> <i>coming</i> - useEmbedList - use the embedded player's internal list function when possible.</li>
+<li> <i>coming</i> - journal - when you viewed or listened</li>
+<li> <i>coming</i> - bookmark - with notes</li>
+<li> <i>coming</i> - thirdParty - annotations</li>
+<li> <i>coming</i> - preferredSource - based on annotations, to distiguish the exact same content on different platforms</li>
+</ol>
+
+<h3>5. SIDE EFFECTS</h3>
+
+<ol>
+<li> If you logout of <code>youtube</code>, the commercials will mostly go away since they don't know who you are. <br/> This also means you CANNOT give a video a thumbs-up/down or leave comments</li>
+<li> How <i>autoplay</i> works changes depending on which webbrowser and which version you are using. All the major webbrowsers (Chrome, Firefox, Explorer, and Safari) have all gone back and forth between allowing and NOT allowing.</li>
+</ol>
+
+<p><hr /></p>
+
+</body>
+<script src=javascript.d/time-alarm.js></script>
+</html>
+
+
+
+
+
+
+
+
