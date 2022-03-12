@@ -21,8 +21,8 @@ html * {
   color: #2020131;
   font-family: Nunito, sans-serif;
  */
-//const theExtensions = [ 'notepad', 'rumble_buttons', 'time-alarm' ];
-const theExtensions = [ 'time-alarm' ];
+//const theExtensions = [ 'notepad', 'rumble_buttons', time_clock', 'time_alarm' , 'alarm_sound', 'simulate_click'  ];
+const theExtensions = [ 'time_clock', 'time_alarm' ];
 
 </script>
 <body>
@@ -33,11 +33,12 @@ const theExtensions = [ 'time-alarm' ];
 
 <button onclick="doClearInterval()">STOP CLOCK</button>
 
-<div id=alarm><span id=ahours></span>:<span id=aminutes></span>:<span id=aseconds></span></div>
-<button onclick="doClearInterval()">SET ALARM</button>
+<div id=alarm><span id=alarm_hour></span>:<span id=alarm_minute></span>:<span id=alarm_second></span></div>
+<button onclick="setAlarm()">SET ALARM</button>
 </div>
+
 <h1>Da Playa<a href="index.html"><img id="player_logo" style="float:right;height:60px;" src=img/da_playa_logo.png /></a></h1>
-<p>In house, we monitor thirty (30) to one-hundred (100) video or podcasts from <code>youtube, rumble, soundcloud or podbean</code> daily. The youtube website is bad, horrible, hideous; rumble, soundcloud & podean are not much better. Instead of improving their search functions, they try to force feed the users garbage-content.</p>
+<p>In house, we monitor thirty (30) to one-hundred (100) video or podcasts from <code>youtube, rumble, soundcloud or podbean</code> daily. The youtube website is bad, horrible, hideous; rumble, soundcloud & podbean are not much better. Instead of improving their search functions, they try to force feed the users garbage-content.</p>
 
 <h2>Instructions</h2>
 <ol class=choices>
@@ -54,7 +55,7 @@ With <i>rumble.com</i> & <i>soundcloud.com</i>, use the EMBED button to find the
 
 <ol>
 <li> The list of encoded URLS is put into the <b>'CVS Input'</b></li>
-<li> Press the <button disabled >SET Data</button> button</li>
+<li> Press the <button  >SET Data</button> button</li>
 <li> The list will then be update for internal use and displayed in the <b>FINAL</b> section.</li>
 <li> Switch window, you are ready to play.</li>
 </ol>
@@ -62,7 +63,7 @@ With <i>rumble.com</i> & <i>soundcloud.com</i>, use the EMBED button to find the
 <h3>3. VIDEO PLAYER</h3>
 
 <ol>
-<li> Hit <button disabled >RESET</button> button</li>
+<li> Hit <button  >RESET</button> button</li>
 <li> Hit the browser <i>Reload page button</i>.</li>
 <li> Hit play button on video, if it does not automatically start.</li>
 </ol>
@@ -73,9 +74,12 @@ With <i>rumble.com</i> & <i>soundcloud.com</i>, use the EMBED button to find the
 
 <ol>
 <li> <code>rumble_buttons</code> - in embedded mode, only the <i>spacebar</i> works as the play/pause on the keyboard.</li>
-<li> <code>notpad</code> - notes kept on the page until the <button disabled >RESET</button> button is hit.</li>
-<li> <i>coming</i> - jump - The <button disabled >JUMP</button> button jumps directly to the next video.</li>
-<li> <i>coming</i> - alarm - If you are waiting for a particular show or event, an alarm is available.</li>
+<li> <code>notepad</code> - keeps notes on the page until the <button  >RESET</button> button is hit.</li>
+<li> <i>time_clock</i> - visible running clock, required for time_alarm.</li>
+<li> <i>time_alarm</i> - If you are waiting for a particular show or event, a one-time (audio or <i>alert()</i>) alarm is available.</li>
+<li> <i>sound_alarm</i> - One-time sound (audio) for the alarm is available; requires <code>time_clock, time_alarm</code>.</li>
+<li> <b><i>working</i></b> - simulate_click - simulate mouse click at x/y</li>
+<li> <i>coming</i> - jump - The <button  >JUMP</button> button jumps directly to the next video.</li>
 <li> <i>coming</i> - extended - information about video, including thumbnails</li>
 <li> <i>coming</i> - titleList - a text list of the title of upcoming media clips</li>
 <li> <i>coming</i> - useEmbedList - use the embedded player's internal list function when possible.</li>
@@ -83,6 +87,7 @@ With <i>rumble.com</i> & <i>soundcloud.com</i>, use the EMBED button to find the
 <li> <i>coming</i> - bookmark - with notes</li>
 <li> <i>coming</i> - thirdParty - annotations</li>
 <li> <i>coming</i> - preferredSource - based on annotations, to distiguish the exact same content on different platforms</li>
+<li> <i>coming</i> - defaultAudioLevel - some browsers require audio to be off to start autoplay</li>
 </ol>
 
 <h3>5. SIDE EFFECTS</h3>
@@ -96,6 +101,7 @@ With <i>rumble.com</i> & <i>soundcloud.com</i>, use the EMBED button to find the
 
 </body>
 <script src=javascript.d/time-alarm.js></script>
+<script src=javascript.d/simulate_click.js></script>
 </html>
 
 
